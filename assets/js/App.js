@@ -8,7 +8,7 @@ let userDetailsData = {};
 export default function App() {
   const root = document.getElementById("root");
 
-  if (getData().name && getData().classDay && getData().topic) {
+  if (getData().name && getData().classNumber && getData().topic) {
     root.innerHTML = textareaHandleHtml + printAndOutputArea;
     handleTaskAndPrintArea();
   } else {
@@ -23,8 +23,8 @@ function showForm() {
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     const date = new Date();
-    userDetailsData.name = e.target[0].value;
-    userDetailsData.classDay = e.target[1].value;
+    userDetailsData.name = e.target[0].value.toUpperCase();
+    userDetailsData.classNumber = e.target[1].value;
     userDetailsData.topic = e.target[2].value;
     userDetailsData.data = "";
     userDetailsData.accountCreated = `${date.toLocaleTimeString()} ${date.toDateString()}`;
@@ -53,9 +53,9 @@ function handleTaskAndPrintArea() {
   card.innerHTML = `<div class="card-header">User Profile</div>
   <div class="card-body">
     <h5 class="card-title">${getData().name}</h5>
-    <h5 class="card-text">Class Number: ${getData().classDay}</h5>
-    <p class="card-text">Topic: ${getData().topic}</p>
-    <p class="card-text">Website URL: ${window.location.origin}</p>
+    <p class="card-text"><b>Class Number:</b> ${getData().classNumber}</p>
+    <p class="card-text"><b>Topic:</b> ${getData().topic}</p>
+    <p class="card-text"><b>Website URL:</b> ${window.location.origin}</p>
   </div>
   <div class="card-footer text-muted">Account Created on ${
     getData().accountCreated
@@ -99,7 +99,6 @@ function handleTaskAndPrintArea() {
     } else {
       show_text.classList.add("d-none");
     }
-
     liveOutput.innerText = e.target.value;
     userDetailsData = getData();
     userDetailsData.data = e.target.value;

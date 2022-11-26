@@ -15,14 +15,15 @@ const getUserDetailsHtml = `<div id="get_user_details">
           />
         </div>
         <div class="mb-3">
-          <label for="day" class="form-label">Class Number/Day</label>
+          <label for="day" class="form-label">Enter The Class Number</label>
           <input
-            type="text"
+            type="number"
             class="form-control"
             id="day"
             name="day"
-            placeholder="Day"
+            placeholder="Class Number"
             required
+            autocomplete="off"
           />
         </div>
         <div class="mb-3">
@@ -42,4 +43,4 @@ const getUserDetailsHtml = `<div id="get_user_details">
   </div>
 </div>
 </div>`;
-export default getUserDetailsHtml
+export default getUserDetailsHtml;
