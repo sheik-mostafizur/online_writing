@@ -6,7 +6,7 @@ const printAndOutputArea = `<div id="print_area">
     </div>
     <div id="show_text" class="d-none">
       <div class="col-md-12 mt-4 border">
-        <div class="p-2" id="live_data">I am text</div>
+        <pre class="p-2" id="live_data">I am text</pre>
       </div>
     </div>
   </div>
