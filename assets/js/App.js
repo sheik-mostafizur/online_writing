@@ -11,6 +11,7 @@ export default function App() {
   if (getData().name && getData().classNumber && getData().topic) {
     root.innerHTML = textareaHandleHtml + printAndOutputArea;
     handleTaskAndPrintArea();
+    document.title = `${getData().name} | ${getData().topic}`;
   } else {
     root.innerHTML = getUserDetailsHtml;
     showForm();
@@ -66,6 +67,7 @@ function handleTaskAndPrintArea() {
   liveOutput.innerText = getData().data;
 
   // clear your task
+  checkBtnDisabled(clear_taskBtn);
   clear_taskBtn.addEventListener("click", function () {
     const isConform = confirm("Are you sure? Do you want to delete your data?");
     if (isConform) {
@@ -74,9 +76,14 @@ function handleTaskAndPrintArea() {
       localStorage.setItem("user_data", JSON.stringify(userDetailsData));
       editor.value = getData().data;
       show_text.classList.add("d-none");
+
+      checkBtnDisabled(printBtn);
+      checkBtnDisabled(clear_taskBtn);
     }
   });
   // print your task
+
+  checkBtnDisabled(printBtn);
   printBtn.addEventListener("click", function (e) {
     print("print_area");
     window.location.reload();
@@ -103,5 +110,17 @@ function handleTaskAndPrintArea() {
     userDetailsData = getData();
     userDetailsData.data = e.target.value;
     localStorage.setItem("user_data", JSON.stringify(userDetailsData));
+
+    checkBtnDisabled(printBtn);
+    checkBtnDisabled(clear_taskBtn);
   });
+}
+
+function checkBtnDisabled(selector) {
+  if (!getData().data.length) {
+    selector.setAttribute("disabled", "disabled");
+  } else {
+    selector.removeAttribute("disabled");
+    console.log("first");
+  }
 }
